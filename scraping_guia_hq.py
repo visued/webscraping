@@ -30,8 +30,12 @@ def main():
             pg = driver.page_source
             s = BeautifulSoup(pg, "html.parser")
             for link in s.find_all('a', {'class': 'suppress'}):
-                print url+'/'+ link.get('href').encode('utf-8')
-                #print link.get('title').encode('utf-8')            
+                #print url+'/'+ link.get('href').encode('utf-8')
+                #print link.get('title').encode('utf-8')
+                links = url+'/'+ link.get('href').encode('utf-8')
+                f=open('links.txt','a')
+                f.write(links+'\n')
+                f.close()            
             count+=1
             print count
             wait = WebDriverWait(driver, 100)
